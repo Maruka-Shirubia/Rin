@@ -10,11 +10,44 @@ import { Button } from "./button";
 import { IconSmall } from "./icon";
 import { Input } from "./input";
 import { Padding } from "./padding";
+// 以下live2d组件
+import React, { useEffect } from 'react';
 
-<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
-<script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js"></script>
+const MyComponent: React.FC = () => {
+  useEffect(() => {
+    // 动态加载 jQuery
+    const jqueryScript = document.createElement('script');
+    jqueryScript.src = 'https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js';
+    jqueryScript.async = true;
+    document.body.appendChild(jqueryScript);
 
+    // 动态加载 live2d-widget
+    const live2dScript = document.createElement('script');
+    live2dScript.src = 'https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js';
+    live2dScript.async = true;
+    document.body.appendChild(live2dScript);
+
+    // 清理函数
+    return () => {
+      document.body.removeChild(jqueryScript);
+      document.body.removeChild(live2dScript);
+    };
+  }, []);
+
+  return (
+    <div>
+      {/* 引入 Font Awesome 样式 */}
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"
+      />
+      {/* 这里可以添加你的组件内容 */}
+    </div>
+  );
+};
+
+export default MyComponent;
+// 以上
 
 export function Header({ children }: { children?: React.ReactNode }) {
     const profile = useContext(ProfileContext);
