@@ -103,3 +103,4 @@ function ThemeButton({ current, mode, label, icon, onClick }: { current: ThemeMo
 }
 
 export default Footer;
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>;
